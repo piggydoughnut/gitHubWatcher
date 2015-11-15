@@ -21,3 +21,11 @@
 
  You are ready to party! :D
  
+ # FAQ
+ 
+ - I want to see Mr. Bean !
+ Then provide an incorrect access_token in config.ini and try to search for someone
+ 
+ - I want to see Panda ! :)
+ Suure, try to go to a page that doesn't exist
+ 

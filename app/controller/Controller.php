@@ -20,22 +20,36 @@ abstract class Controller {
 		);
 	}
 
+	/**
+	 * Before each route checks if the user is logged in
+	 */
 	function beforeRoute() {
 		if ($this->app->get('SESSION.user')) {
 			$this->app->set('loggedIN', true);
 		}
 	}
 
+	/**
+	 * @param $message
+	 */
 	public function setErrorMessage($message) {
 		$this->app->set('what', $message);
 		echo Template::instance()->render('../views/not_found.htm');
 		return;
 	}
 
+	/**
+	 * Returns suggestins for error
+	 * @param $status
+	 * @return string
+	 */
 	public function getSuggestion($status) {
 		return $this->app->get($status);
 	}
 
+	/**
+	 * @param $user
+	 */
 	public function processError($user) {
 		$this->app->set('ERROR.text', $user['body']['message'] . ' - ' . $user['headers']['Status']);
 		$code = $this->getResponseCode($user);
@@ -46,8 +60,12 @@ abstract class Controller {
 		return;
 	}
 
+	/**
+	 * @param $info
+	 * @return int
+	 */
 	public function getResponseCode($info) {
 		$reponse_data = explode(' ', $info['headers'][0]);
-		return $reponse_data[1];
+		return (int)$reponse_data[1];
 	}
 }

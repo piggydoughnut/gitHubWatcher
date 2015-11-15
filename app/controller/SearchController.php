@@ -19,6 +19,9 @@ class SearchController extends Controller {
 		$this->access_token = $this->app->get('access_token');
 	}
 
+	/**
+	 *
+	 */
 	public function  index() {
 		echo Template::instance()->render('../views/index.htm');
 	}

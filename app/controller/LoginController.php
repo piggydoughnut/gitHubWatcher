@@ -15,6 +15,9 @@ class LoginController extends Controller {
 		$this->auth = new Auth(new Mapper($this->db, 'users'), ['id' => 'username', 'pw' => 'password']);
 	}
 
+	/**
+	 *
+	 */
 	public function login() {
 		if (isset($_POST['user']) && isset($_POST['pass'])) {
 			$u = htmlspecialchars($_POST['user']);
@@ -28,7 +31,9 @@ class LoginController extends Controller {
 		return;
 	}
 
-	// for testing only
+	/**
+	 * for testing only
+	 */
 	public function createUser() {
 		$user = new Mapper($this->db, 'users');
 		$user->username = 'piggy';
@@ -36,6 +41,9 @@ class LoginController extends Controller {
 		$user->save();
 	}
 
+	/**
+	 *
+	 */
 	public function logout() {
 		$this->app->clear('SESSION.loggedIN');
 		session_commit();

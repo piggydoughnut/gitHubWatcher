@@ -15,6 +15,9 @@ class LogsController extends Controller {
 		$this->model = new Mapper($this->db, 'search_logs');
 	}
 
+	/**
+	 * Returns index page for logs with pagination
+	 */
 	public function index() {
 		$page = \Pagination::findCurrentPage();
 		$result = $this->model->paginate($page - 1, $this->app->get('limit'));
@@ -27,6 +30,9 @@ class LogsController extends Controller {
 		echo Template::instance()->render('../views/logs.htm');
 	}
 
+	/**
+	 * Erases log entries which are older than a given amount od hours
+	 */
 	public function erase() {
 		if (isset($_POST['hours'])) {
 			$hours = htmlspecialchars($_POST['hours']);

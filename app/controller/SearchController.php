@@ -35,12 +35,16 @@ class SearchController extends Controller {
 
 			$this->createlogEntry($username);
 			$user = $this->getUserNameInfo($username);
-
-			if (isset($user['body']['message'])) {
-				return $this->processError($user);
+			foreach ($this->err_codes as $code) {
+				if (strpos($user['headers'][0], $code)) {
+					if (isset($user['body']['message'])) {
+						return $this->processError($user);
+					} else {
+						return $this->setErrorResponse(400);
+					}
+				}
 			}
 			$repositories = $this->makeCurlRequest(self::GITHUB_API . "/users/{$username}/repos");
-
 			$this->app->set('repos', $repositories['body']);
 			$this->app->set('user', $user['body']);
 

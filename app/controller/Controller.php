@@ -10,6 +10,7 @@ abstract class Controller {
 
 	protected $db;
 	protected $app;
+	protected $err_codes = ['400', '401', '404', '500'];
 
 	public function __construct() {
 		date_default_timezone_set('Europe/Prague');

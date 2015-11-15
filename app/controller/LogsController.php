@@ -34,25 +34,29 @@ class LogsController extends Controller {
 	 * Erases log entries which are older than a given amount of hours
 	 */
 	public function erase() {
-		if (isset($_POST['hours'])) {
-			$hours = htmlspecialchars($_POST['hours']);
-			if (is_numeric($hours) && $hours > 0) {
+		if ($this->app->get('SESSION.loggedIN')) {
+			if (isset($_POST['hours'])) {
+				$hours = htmlspecialchars($_POST['hours']);
+				if (is_numeric($hours) && $hours > 0) {
 
-				$hours_ago = time() - ($hours * 60 * 60);
-				$logs = $this->model->select('id, created');
+					$hours_ago = time() - ($hours * 60 * 60);
+					$logs = $this->model->select('id, created');
 
-				foreach ($logs as $one) {
-					$date = new \DateTime($one->created, new \DateTimeZone(date_default_timezone_get()));
-					$timestamp = $date->format('U');
-					if ((int)$timestamp < $hours_ago) {
-						$one->erase();
+					foreach ($logs as $one) {
+						$date = new \DateTime($one->created, new \DateTimeZone(date_default_timezone_get()));
+						$timestamp = $date->format('U');
+						if ((int)$timestamp < $hours_ago) {
+							$one->erase();
+						}
 					}
+					$this->app->set('msg', 'You deleted all log entries older than ' . $hours . ' hours');
+				} else {
+					$this->app->set('msg', 'You have to enter a valid numeric value !');
 				}
-				$this->app->set('msg', 'You deleted all log entries older than ' . $hours . ' hours');
-			} else {
-				$this->app->set('msg', 'You have to enter a valid numeric value !');
 			}
+			return $this->index();
+		} else {
+			return $this->setErrorResponse(401);
 		}
-		return $this->index();
 	}
 }

@@ -54,6 +54,10 @@ abstract class Controller {
 	public function processError($user) {
 		$this->app->set('ERROR.text', $user['body']['message'] . ' - ' . $user['headers']['Status']);
 		$code = $this->getResponseCode($user);
+		return $this->setErrorResponse($code);
+	}
+
+	public function setErrorResponse($code) {
 		$this->app->set('suggestion', $this->getSuggestion($code));
 		$this->app->set('code', $code);
 		http_response_code($code);

@@ -5,9 +5,26 @@
 
     <h1>Whoops oops! There is a problem with your request!</h1>
 
-    <br />
-    <p class="lead">{{ @msg }}</p>
+    <br/>
+    <check if="{{ @ERROR.code==404 }}">
+        <p class="lead">{{ @ERROR.text }}</p>
+        <img src="../../public/images/404.jpg">
+    </check>
+
+    <check if="{{ @code==404 }}">
+        <p class="lead">{{ @ERROR.text }}</p>
+        <p class="lead"> We could not find the user u were looking for :(</p>
+    </check>
+
+    <check if="{{ @code==500 }}">
+        <img src="../../public/images/500.jpg">
+    </check>
+    <check if="{{ @code==401 }}">
+        <img src="../../public/images/401.jpg">
+    </check>
+
     <p class="lead">{{ @suggestion }}</p>
+
 </div>
 
 </div><!-- /.container -->

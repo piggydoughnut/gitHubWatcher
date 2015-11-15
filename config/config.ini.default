@@ -1,0 +1,18 @@
+[globals]
+; Where the framework autoloader will look for app files, plugins
+AUTOLOAD=app/;app/plugins/Pagination/
+; Where errors are logged
+LOGS=tmp/
+; Where the framework will look for templates and related HTML-support files
+UI=app/views/
+
+; DB details
+db="mysql:host=YOURHOST;port=YOURPORT;dbname=YOURDB"
+db_user=USER
+db_pass=PASSWORD
+
+; GitHub access token
+access_token=yourAccessToken
+
+; Limit on log query results
+limit=5

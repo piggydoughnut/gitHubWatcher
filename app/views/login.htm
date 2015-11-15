@@ -1,0 +1,29 @@
+<include href="public.htm"/>
+<include href="navigation.htm"/>
+
+<div class="container content">
+
+    <check if="{{ @SESSION.loggedIN==true }}">
+        <div class="text-center">
+
+            <h1>Welcome back</h1>
+            <p class="lead">You are logged in as {{ @SESSION.loggedIN }}.</p>
+
+        </div>
+    </check>
+
+    <check if="{{ @SESSION.loggedIN==false }}">
+        <form class="form-signin" method="post" action="/login">
+            <h2 class="form-signin-heading text-center">Please sign in</h2>
+            <input name="user" type="text" id="username" class="form-control" placeholder="username" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input name="pass" type="password" id="inputPassword" class="form-control" placeholder="password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    </check>
+
+</div> <!-- /container -->
+
+</div><!-- /.container -->
+
+<include href="footer.htm"/>

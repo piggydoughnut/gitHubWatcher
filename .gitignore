@@ -1,0 +1,5 @@
+
+vendor/
+tmp/
+.idea/
+config/config.ini

@@ -1,0 +1,49 @@
+<include href="public.htm"/>
+<include href="navigation.htm"/>
+
+<div class="container content">
+
+
+    <h1 class="text-center"> Search logs </h1>
+    <br/>
+
+    <check if="{{ @SESSION.loggedIN==true }}">
+        <form class="erase" method="post" action="/logs">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label for="hours">Erase all log entries older than </label>
+                    <input name="hours" type="text" class="form-control" id="hours" placeholder="a number of"> hours
+
+                </div>
+                <button type="submit" class="btn btn-default">Erase</button>
+            </div>
+        </form>
+        <br/>
+    </check>
+    <check if="{{ @msg==true }}">
+        <p>{{ @msg }}</p>
+    </check>
+
+    <table class="table table-striped">
+        <thead>
+        <tr class="info">
+            <td>Term</td>
+            <td>IP</td>
+            <td>Created</td>
+        </tr>
+        </thead>
+        {~ foreach(@logs['subset'] as @log): ~}
+        <tr>
+            <td> {{ @log.term }}</td>
+            <td> {{ @log.ip }}</td>
+            <td> {{ @log.created }}</td>
+        </tr>
+        {~ endforeach ~}
+    </table>
+
+</div>
+<!-- /.container -->
+
+{{ @pagebrowser | raw }}
+
+<include href="footer.htm"/>

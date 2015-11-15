@@ -1,0 +1,30 @@
+<include href="public.htm"/>
+<include href="navigation.htm"/>
+
+<div class="container content">
+
+
+    <h1 class="text-center">Public repositories of {{ @user['login'] }}</h1>
+    <br/>
+    <table class="table table-striped">
+        <thead>
+        <tr class="info">
+            <td>Name</td>
+            <td>Link</td>
+            <td>Created</td>
+        </tr>
+        </thead>
+        {~ foreach(@repos as @repo): ~}
+        <tr>
+            <td> {{ @repo['name'] }}</td>
+            <td> {{ @repo['url'] }}</td>
+            <td> {{date('m/d/Y', strtotime(@repo['created_at'])) }}</td>
+        </tr>
+        {~ endforeach ~}
+    </table>
+
+</div>
+<!-- /.container -->
+
+
+<include href="footer.htm"/>

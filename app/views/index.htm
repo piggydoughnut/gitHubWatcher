@@ -1,0 +1,22 @@
+<include href="public.htm"/>
+<include href="navigation.htm"/>
+
+<div class="container content text-center">
+
+        <h1>User public repositories</h1>
+        <p class="lead">Search for all public repositories on GitHub that belong to the user.</p>
+        <form method="post" action="/search">
+            <div class="form-inline">
+                <div class="form-group">
+                    <input name="username" type="text" class="form-control" id="username" placeholder="github username">
+
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </div>
+
+        </form>
+    </div>
+
+</div><!-- /.container -->
+
+<include href="footer.htm"/>

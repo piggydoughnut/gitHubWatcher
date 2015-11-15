@@ -10,6 +10,7 @@
         <thead>
         <tr class="info">
             <td>Name</td>
+            <td>Description</td>
             <td>Link</td>
             <td>Created</td>
         </tr>
@@ -17,7 +18,8 @@
         {~ foreach(@repos as @repo): ~}
         <tr>
             <td> {{ @repo['name'] }}</td>
-            <td> {{ @repo['url'] }}</td>
+            <td> {{ @repo['description'] }}</td>
+            <td> <a href="{{ @repo['html_url'] }}">Repo</a></td>
             <td> {{date('m/d/Y', strtotime(@repo['created_at'])) }}</td>
         </tr>
         {~ endforeach ~}

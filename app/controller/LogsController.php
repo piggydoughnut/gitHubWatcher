@@ -9,6 +9,7 @@ use Template;
 class LogsController extends Controller {
 
 	protected $model;
+	const ORDER ='created DESC';
 
 	public function __construct() {
 		parent::__construct();
@@ -20,7 +21,7 @@ class LogsController extends Controller {
 	 */
 	public function index() {
 		$page = \Pagination::findCurrentPage();
-		$result = $this->model->paginate($page - 1, $this->app->get('limit'));
+		$result = $this->model->paginate($page - 1, $this->app->get('limit'), [], ['order'=> self::ORDER]);
 
 		$pages = new Pagination($result['total'], $result['limit']);
 		$pages->setTemplate('../views/pagebrowser.html');

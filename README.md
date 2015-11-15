@@ -2,12 +2,14 @@
 - lets you check user's public repositories
 - logs search entries
 - deletes entries older than a given number of hours
+- sample user -> admin-admin
 
 # Requirements
 
 - MySQL 5.5 or later
 - PHP 5.3.4 or higher
 - The app is based on FatFree Framework (F3) http://fatfreeframework.com/
+- Composer
 
 # How to install
 

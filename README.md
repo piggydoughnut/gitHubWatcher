@@ -3,6 +3,11 @@
 - logs search entries
 - deletes entries older than a given number of hours
 
+# Requirements
+
+- MySQL 5.5 or later
+- The app is base on FatFree Framework (F3) http://fatfreeframework.com/
+- PHP 5.3.4 or higher
 
 # How to install
 

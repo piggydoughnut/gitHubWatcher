@@ -30,7 +30,7 @@ class LogsController extends Controller {
 	public function erase() {
 		if (isset($_POST['hours'])) {
 			$hours = htmlspecialchars($_POST['hours']);
-			if (is_numeric($hours)) {
+			if (is_numeric($hours) && $hours > 0) {
 				$hours_ago = strtotime('-' . $hours . ' hour');
 				$logs = $this->model->select('id, created');
 				foreach ($logs as $one) {
@@ -40,7 +40,7 @@ class LogsController extends Controller {
 				}
 				$this->app->set('msg', 'You deleted all log entries older than ' . $hours . ' hours');
 			} else {
-				$this->app->set('msg', '! You have to enter a valid numeric value !');
+				$this->app->set('msg', 'You have to enter a valid numeric value !');
 			}
 		}
 		return $this->index();

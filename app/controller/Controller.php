@@ -12,6 +12,7 @@ abstract class Controller {
 	protected $app;
 
 	public function __construct() {
+		date_default_timezone_set('Europe/Prague');
 		$this->app = Base::instance();
 		$this->db = new SQL(
 			$this->app->get('db'),

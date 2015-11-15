@@ -31,16 +31,20 @@ class LogsController extends Controller {
 	}
 
 	/**
-	 * Erases log entries which are older than a given amount od hours
+	 * Erases log entries which are older than a given amount of hours
 	 */
 	public function erase() {
 		if (isset($_POST['hours'])) {
 			$hours = htmlspecialchars($_POST['hours']);
 			if (is_numeric($hours) && $hours > 0) {
-				$hours_ago = strtotime('-' . $hours . ' hour');
+
+				$hours_ago = time() - ($hours * 60 * 60);
 				$logs = $this->model->select('id, created');
+
 				foreach ($logs as $one) {
-					if (strtotime($one->created) < $hours_ago) {
+					$date = new \DateTime($one->created, new \DateTimeZone(date_default_timezone_get()));
+					$timestamp = $date->format('U');
+					if ((int)$timestamp < $hours_ago) {
 						$one->erase();
 					}
 				}

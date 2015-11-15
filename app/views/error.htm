@@ -7,12 +7,10 @@
 
     <br/>
     <check if="{{ @ERROR.code==404 }}">
-        <p class="lead">{{ @ERROR.text }}</p>
         <img src="../../public/images/404.jpg">
     </check>
 
     <check if="{{ @code==404 }}">
-        <p class="lead">{{ @ERROR.text }}</p>
         <p class="lead"> We could not find the user u were looking for :(</p>
     </check>
 
@@ -23,6 +21,7 @@
         <img src="../../public/images/401.jpg">
     </check>
 
+    <p class="lead">{{ @ERROR.text }}</p>
     <p class="lead">{{ @suggestion }}</p>
 
 </div>

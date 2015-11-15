@@ -91,7 +91,8 @@ class SearchController extends Controller {
 		$log = new Mapper($this->db, 'search_logs');
 		$log->term = $username;
 		$log->ip = $_SERVER['REMOTE_ADDR'];
-		$log->created = date("Y-m-d h:i:sa");
+		$date = new \DateTime('now', new \DateTimeZone(date_default_timezone_get()));
+		$log->created = $date->format("Y-m-d H:i:s");
 		$log->save();
 	}
 
